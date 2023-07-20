@@ -137,7 +137,7 @@ figSix.update_layout(
     yaxis_autorange='reversed',
     template='plotly_dark'
 )
-
+st.plotly_chart(figSix)
 ##############################################################################################
 
 st.header('Elayeh - Viz')
