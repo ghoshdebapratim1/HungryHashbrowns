@@ -29,6 +29,7 @@ df=pd.read_csv('Spotify_Song_Attributes.csv')
 st.write(df.head())  
 
 ## Removed Irrelevant Columns - Elayeh
+st.subheader('Dropping Irrelevant Columns ')
 st.write('All the columns present in the dataset ')
 st.write(df.columns)
 columns_to_drop = ['id', 'uri','track_href', 'analysis_url']
@@ -37,6 +38,7 @@ st.write(' After dropping the irrelevant columns, the new columns are displayed 
 st.write(df.columns)
 
 ## Removing Missing Values - Riana 
+st.subheader('Treating Missing Values')
 st.write('Missing Values in the dataset')
 st.write(df.isnull().sum())
 df.dropna(inplace=True)
@@ -46,5 +48,23 @@ st.write(df.isnull().sum())
 ## Removed duplicated 
 
 
+st.header('Data Exploration - Answering Questions relevant to our analysis ')
 
 
+st.subheader(' Question 1 : What are the top genres in terms of hours played?') ## Riana 
+df_plot=pd.DataFrame(df.groupby('genre')['hrPlayed'].sum().sort_values(ascending=False).head(20)).reset_index()
+
+df_plot.columns=['genre','TotalhrPlayed']
+
+fig=px.bar(df_plot,x='genre',y='TotalhrPlayed',color='genre',title='Top Genres')
+
+st.plotly_chart(fig)
+
+st.subheader(' Question 2 : What genre has the higher instrumentalness ') ## Elayeh 
+df_plot=pd.DataFrame(df.groupby('genre')['instrumentalness'].mean().sort_values(ascending=False)).head(10).reset_index()
+
+df_plot.columns=['genre','avg_intrumentalness']
+
+
+fig = px.bar(df_plot,x='genre',y='avg_intrumentalness', color= 'genre', title='Genre vs Average Instrumentalness')
+st.plotly_chart(fig)
