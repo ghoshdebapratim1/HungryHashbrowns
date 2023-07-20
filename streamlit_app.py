@@ -78,7 +78,7 @@ with tab1:
 with tab2:
     ## Riana 
     st.header('Riana- Viz')
-    riana_top_n = st.slider('Choose the top N items to display ', 5, 50, 20)
+    riana_top_n = st.slider('Choose the top N items to display ', 5, 50, 20, key=1)
     st.subheader(' Question 1 : What are the top genres in terms of hours played?')
     
     df_plot=pd.DataFrame(df.groupby('genre')['hrPlayed'].sum().sort_values(ascending=False).head(riana_top_n)).reset_index()
@@ -160,7 +160,7 @@ with tab2:
 ##############################################################################################
 with tab3:
     st.header('Elayeh - Viz')
-    elayeh_top_n = st.slider('Choose the top N items to display ', 5, 50, 20)
+    elayeh_top_n = st.slider('Choose the top N items to display ', 5, 50, 20, key=2)
     st.subheader(' Question 1 : What genre has the higher instrumentalness ') ## Elayeh 
     
     df_plot=pd.DataFrame(df.groupby('genre')['instrumentalness'].mean().sort_values(ascending=False)).head(elayeh_top_n).reset_index()
