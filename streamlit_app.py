@@ -28,6 +28,7 @@ df=pd.read_csv('Spotify_Song_Attributes.csv')
 
 st.write(df.head())  
 
+
 ## Removed Irrelevant Columns - Elayeh
 st.subheader('Dropping Irrelevant Columns ')
 st.write('All the columns present in the dataset ')
@@ -45,8 +46,23 @@ df.dropna(inplace=True)
 df.reset_index(drop=True, inplace=True)
 st.write('After dropping missing values  in the dataset')
 st.write(df.isnull().sum())
-## Removed duplicated 
 
+map={1:'Major',0:'Minor'}
+
+df['mode']=df['mode'].map(map)
+df['mode'].value_counts()
+
+df['minPlayed']=df['msPlayed']/(1000*60)
+
+df['hrPlayed']=df['msPlayed']/(1000*60*60)
+
+## Removed duplicated 
+st.subheader('Dropping Duplicate Values ')
+st.write('Number of Rows before dropping duplicates ')
+st.write(df.shape[0])
+df.drop_duplicates(inplace=True)
+st.write('Number of Rows after dropping duplicates ')
+st.write(df.shape[0])
 
 st.header('Data Exploration - Answering Questions relevant to our analysis ')
 
