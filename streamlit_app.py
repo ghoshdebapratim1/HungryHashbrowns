@@ -17,8 +17,8 @@ st.header('Intro About our Project ')
 
 st.header('Team Members Intro ')
 
-st.markdown("Riana: Hi my name is Riana Abdulle. I am 15 years old and I live in Arizona. In the last week I have been learning about the basics of Python and how to make visualizations using a dataset. I have learned how to take questions about a dataset and turn it into something I can look at.")
-st.markdown("Elayeh: Hi my name is Elayeh Thorpe. I'm currently 15 years old. I'm from Georgia. Over the last few days I've been learning more and more about data science and how to code in Python. Specifically, I've learned how to create data visualizations and how to analyze datasets. I'm now able to use this new information to turn datasets into something that is easier to look at." )
+st.markdown("- Riana: Hi my name is Riana Abdulle. I am 15 years old and I live in Arizona. In the last week I have been learning about the basics of Python and how to make visualizations using a dataset. I have learned how to take questions about a dataset and turn it into something I can look at.")
+st.markdown("- Elayeh: Hi my name is Elayeh Thorpe. I'm currently 15 years old. I'm from Georgia. Over the last few days I've been learning more and more about data science and how to code in Python. Specifically, I've learned how to create data visualizations and how to analyze datasets. I'm now able to use this new information to turn datasets into something that is easier to look at." )
 
 
 
@@ -77,7 +77,7 @@ df_plot=pd.DataFrame(df.groupby('genre')['hrPlayed'].sum().sort_values(ascending
 df_plot.columns=['genre','TotalhrPlayed']
 
 fig=px.bar(df_plot,x='genre',y='TotalhrPlayed',color='genre',title='Top Genres')
-
+st.write("From this we can see that ")
 st.plotly_chart(fig)
 
 st.subheader("Question 2 : Which genre has more danceability than other?")
@@ -151,6 +151,7 @@ df_plot.columns=['genre','avg_intrumentalness']
 
 fig = px.bar(df_plot,x='genre',y='avg_intrumentalness', color= 'genre', title='Genre vs Average Instrumentalness')
 st.plotly_chart(fig)
+st.write("From this chart we can gather that Chiptune has the highest instrumentalness out of all of the genres. We can also understand that most of the genres with higher instrumentalness are the ones that typically have less speech in it such as classical and lo-fi music.")
 
 st.subheader(' Question 2 : What genre has more valence?')
 df_plot=pd.DataFrame(df.groupby('genre')['valence'].mean().sort_values(ascending=False)).head(10).reset_index()
