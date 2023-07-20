@@ -66,8 +66,10 @@ st.write(df.shape[0])
 
 st.header('Data Exploration - Answering Questions relevant to our analysis ')
 
+## Riana 
+st.header('Riana- Viz')
+st.subheader(' Question 1 : What are the top genres in terms of hours played?')
 
-st.subheader(' Question 1 : What are the top genres in terms of hours played?') ## Riana 
 df_plot=pd.DataFrame(df.groupby('genre')['hrPlayed'].sum().sort_values(ascending=False).head(20)).reset_index()
 
 df_plot.columns=['genre','TotalhrPlayed']
@@ -76,7 +78,42 @@ fig=px.bar(df_plot,x='genre',y='TotalhrPlayed',color='genre',title='Top Genres')
 
 st.plotly_chart(fig)
 
-st.subheader(' Question 2 : What genre has the higher instrumentalness ') ## Elayeh 
+st.subheader("Question 2 : Which genre has more danceability than other?")
+
+df_plot=pd.DataFrame(df.groupby('genre')['danceability'].mean().sort_values(ascending=False).head(20)).reset_index()
+
+df_plot.columns=['genre','avg_danceability']
+
+
+fig = px.bar(df_plot,x='genre',y='avg_danceability',color='genre',title='Genre vs Average Danceability')
+
+st.plotly_chart(fig)
+
+st.subheader("Question 3 : Is the loudness realted tot he genre?")
+
+df_plot=pd.DataFrame(df.groupby('genre')['loudness'].mean().sort_values(ascending=False).head(20)).reset_index()
+
+df_plot.columns=['genre','avg_loudness']
+
+
+fig = px.bar(df_plot,x='genre',y='avg_loudness',color='genre',title='Genre vs Average Loudness')
+
+st.plotly_chart(fig)
+
+st.subheader("Question 4 : What are the top soundtracks in terms of hours played?")
+
+df_plot=df[["trackName", "hrPlayed"]].sort_values(by="hrPlayed", ascending=False).head(20)
+
+fig=px.bar(df_plot, x="trackName", y="hrPlayed")
+
+st.plotly_chart(fig)
+
+##############################################################################################
+
+st.header('Elayeh - Viz')
+
+st.subheader(' Question 1 : What genre has the higher instrumentalness ') ## Elayeh 
+
 df_plot=pd.DataFrame(df.groupby('genre')['instrumentalness'].mean().sort_values(ascending=False)).head(10).reset_index()
 
 df_plot.columns=['genre','avg_intrumentalness']
@@ -84,3 +121,24 @@ df_plot.columns=['genre','avg_intrumentalness']
 
 fig = px.bar(df_plot,x='genre',y='avg_intrumentalness', color= 'genre', title='Genre vs Average Instrumentalness')
 st.plotly_chart(fig)
+
+st.subheader(' Question 2 : What genre has more valence?')
+df_plot=pd.DataFrame(df.groupby('genre')['valence'].mean().sort_values(ascending=False)).head(10).reset_index()
+
+df_plot.columns=['genre','avg_valence']
+
+
+fig = px.bar(df_plot,x='genre',y='avg_valence', color= 'genre', title='Genre vs Average Valence')
+fig.show()
+
+st.subheader(' Question 3 : Is there a relation between speechiness and duration?')
+fig=px.scatter(df,x='speechiness', y='duration_ms', title='Speechiness vs Duration')
+fig.show()
+
+st.subheader(' Question 4: Who are the Top Artists')
+df_plot=pd.DataFrame(df.groupby('artistName')['hrPlayed'].sum().sort_values(ascending=False).head()).reset_index()
+
+df_plot.columns=['artistName','TotalhrPlayed']
+
+fig=px.bar(df_plot,x='artistName',y='TotalhrPlayed',color='artistName',title='Top Artists')
+fig.show()
