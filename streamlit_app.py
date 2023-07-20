@@ -103,7 +103,7 @@ df_plot.columns=['genre','avg_loudness']
 
 fig = px.bar(df_plot,x='genre',y='avg_loudness',color='genre',title='Genre vs Average Loudness')
 
-st.write("")
+st.write("From this chart we can see that the loudest genre is j-idol followed by aggresive phonk and modern dream pop.")
 
 st.plotly_chart(fig)
 
@@ -112,6 +112,8 @@ st.subheader("Question 4 : What are the top soundtracks in terms of hours played
 df_plot=df[["trackName", "hrPlayed"]].sort_values(by="hrPlayed", ascending=False).head(20)
 
 fig=px.bar(df_plot, x="trackName", y="hrPlayed")
+
+st.write("From this we can see that the top soundtracks are Sparkle - movie ver. and there is a huge gap between this soundtrack and the others.")
 
 st.plotly_chart(fig)
 
@@ -142,6 +144,9 @@ figSix.update_layout(
     yaxis_autorange='reversed',
     template='plotly_dark'
 )
+
+st.write("This heatmap shows the correlation between each categorie in the dataset. The darker colors shows a strong relationship while the lighter colors shows a weaker relationship.")
+
 st.plotly_chart(figSix)
 ##############################################################################################
 
@@ -191,3 +196,14 @@ df_plot.columns=['genre','mode','count']
 fig = px.sunburst(df_plot, path=['mode', 'genre'], values='count', color='mode')
 st.plotly_chart(fig)
 st.write("This chart tells us that there are more major than minor tracks and that Alt Z and Pop have more tracks in the major area.")
+
+st.subheader(" Question 6: How does the distribution of tempos vary among different genres?")
+df_plot=pd.DataFrame(df.groupby('genre')['hrPlayed'].sum().sort_values(ascending=False).head(10)).reset_index()
+
+df_plot.columns=['genre','tempo']
+
+df_plot_new=df[df['genre'].isin(df_plot['genre'])]
+
+fig=px.box(df_plot_new,x='genre',y='tempo',color='genre',title='Tempo Distribution by Genre')
+st.plotly_chart(fig)
+st.write("From this chart we can understand that singer-songwriter pop has one of the widest ranges of tempo and that Japanese teen pop has the shortest range of tempo.")
