@@ -13,7 +13,7 @@ import plotly.figure_factory as ff
 st.title("Attributes of Songs on Spotify")
 
 st.header('Intro About our Project ')
-
+st.write("Our project is on the attributes of spotify songs. We looked at the different categories in the dataset and started forming questions to answer in our project. We made visualizations to go with the questions to see different relations and correlations among the dataset. The visualizations make it easier to understand the data and the different correlations and relations we found while doing this project.")
 
 st.header('Team Members Intro ')
 
@@ -78,9 +78,9 @@ df_plot.columns=['genre','TotalhrPlayed']
 
 fig=px.bar(df_plot,x='genre',y='TotalhrPlayed',color='genre',title='Top Genres')
 
-st.write("From this we can see that alt z is is genre with the most hours played, and that pop genres are the more popular genres with more hours played than other genres.")
-
 st.plotly_chart(fig)
+
+st.write("From this we can see that alt z is is genre with the most hours played, and that pop genres are the more popular genres with more hours played than other genres.")
 
 st.subheader("Question 2 : Which genre has more danceability than other?")
 
@@ -90,9 +90,9 @@ df_plot.columns=['genre','avg_danceability']
 
 fig = px.bar(df_plot,x='genre',y='avg_danceability',color='genre',title='Genre vs Average Danceability')
 
-st.write("From this chart we can see that canadian old school hip hop has the most danceability than the others followed by trap queen and russian drill.")
-
 st.plotly_chart(fig)
+
+st.write("From this chart we can see that canadian old school hip hop has the most danceability than the others followed by trap queen and russian drill.")
 
 st.subheader("Question 3 : Is the loudness realted to the genre?")
 
@@ -103,9 +103,9 @@ df_plot.columns=['genre','avg_loudness']
 
 fig = px.bar(df_plot,x='genre',y='avg_loudness',color='genre',title='Genre vs Average Loudness')
 
-st.write("From this chart we can see that the loudest genre is j-idol followed by aggresive phonk and modern dream pop.")
-
 st.plotly_chart(fig)
+
+st.write("From this chart we can see that the loudest genre is j-idol followed by aggresive phonk and modern dream pop.")
 
 st.subheader("Question 4 : What are the top soundtracks in terms of hours played?")
 
@@ -113,9 +113,9 @@ df_plot=df[["trackName", "hrPlayed"]].sort_values(by="hrPlayed", ascending=False
 
 fig=px.bar(df_plot, x="trackName", y="hrPlayed")
 
-st.write("From this we can see that the top soundtracks are Sparkle - movie ver. and there is a huge gap between this soundtrack and the others.")
-
 st.plotly_chart(fig)
+
+st.write("From this we can see that the top soundtracks are Sparkle - movie ver. and there is a huge gap between this soundtrack and the others.")
 
 st.subheader("Question 5 : What is the correlation between each categorie?")
 
@@ -145,9 +145,9 @@ figSix.update_layout(
     template='plotly_dark'
 )
 
-st.write("This heatmap shows the correlation between each categorie in the dataset. The darker colors shows a strong relationship while the lighter colors shows a weaker relationship.")
-
 st.plotly_chart(figSix)
+
+st.write("This heatmap shows the correlation between each categorie in the dataset. The darker colors shows a strong relationship while the lighter colors shows a weaker relationship.")
 ##############################################################################################
 
 st.header('Elayeh - Viz')
@@ -207,3 +207,6 @@ df_plot_new=df[df['genre'].isin(df_plot['genre'])]
 fig=px.box(df_plot_new,x='genre',y='tempo',color='genre',title='Tempo Distribution by Genre')
 st.plotly_chart(fig)
 st.write("From this chart we can understand that singer-songwriter pop has one of the widest ranges of tempo and that Japanese teen pop has the shortest range of tempo.")
+
+st.header('Conclusion')
+st.write("In conclusion, we have used our newfound data visualization skills to find correlations between various bits of data within our dataset. Every chart shown has made it easier to process and understand this information. We have come to understand from our charts that Alt z and Pop seem to be the popular genres within gour dataset. We have also learned that the canadian old hip hop genre has the most danceability. I  ")
