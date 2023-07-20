@@ -13,7 +13,7 @@ import plotly.figure_factory as ff
 st.title("Attributes of Songs on Spotify")
 
 st.header('Intro About our Project ')
-st.write("Our project is on the attributes of spotify songs. We looked at the different categories in the dataset and started forming questions to answer in our project. We made visualizations to go with the questions to see different relations and correlations among the dataset. The visualizations make it easier to understand the data and the different correlations and relations we found while doing this project.")
+st.write("Our project is on the attributes of spotify songs. The goal of out project is to answer different questions about the dataset and make visualizations to go with it. We looked at the different categories in the dataset and started forming questions to answer in our project. We made visualizations to go with the questions to see different relations and correlations among the dataset. The visualizations make it easier to understand the data and the different correlations and relations we found while doing this project.")
 
 st.header('Team Members Intro ')
 
@@ -209,4 +209,4 @@ st.plotly_chart(fig)
 st.write("From this chart we can understand that singer-songwriter pop has one of the widest ranges of tempo and that Japanese teen pop has the shortest range of tempo.")
 
 st.header('Conclusion')
-st.write("In conclusion, we have used our newfound data visualization skills to find correlations between various bits of data within our dataset. Every chart shown has made it easier to process and understand this information. We have come to understand from our charts that Alt z and Pop seem to be the popular genres within gour dataset. We have also learned that the canadian old hip hop genre has the most danceability. I  ")
+st.write("In conclusion, we have used our newfound data visualization skills to find correlations between various bits of data within our dataset. Every chart shown has made it easier to process and understand this information. We have come to understand from our charts that Alt z and Pop seem to be the popular genres within gour dataset. We have also learned that the canadian old hip hop genre has the most danceability. It can be found in our data that the blues genre has the most average valence. There is much information that can be found within our data visualisations.")
