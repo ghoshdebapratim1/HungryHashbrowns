@@ -28,10 +28,21 @@ df=pd.read_csv('Spotify_Song_Attributes.csv')
 
 st.write(df.head())  
 
-## Removed Irrelevant Columns 
+## Removed Irrelevant Columns - Elayeh
+st.write('All the columns present in the dataset ')
+st.write(df.columns)
+columns_to_drop = ['id', 'uri','track_href', 'analysis_url']
+df.drop(columns_to_drop, axis=1, inplace=True)
+st.write(' After dropping the irrelevant columns, the new columns are displayed below ')
+st.write(df.columns)
 
-## Removing Missing Values 
-
+## Removing Missing Values - Riana 
+st.write('Missing Values in the dataset')
+st.write(df.isnull().sum())
+df.dropna(inplace=True)
+df.reset_index(drop=True, inplace=True)
+st.write('After dropping missing values  in the dataset')
+st.write(df.isnull().sum())
 ## Removed duplicated 
 
 
