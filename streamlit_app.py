@@ -4,6 +4,7 @@ import pandas as pd
 #import matplotlib.pyplot as plt
 #import numpy as np
 import plotly.express as px
+import plotly.figure_factory as ff
 
 #look for more information here https://docs.streamlit.io/library/cheatsheet
 
@@ -108,6 +109,34 @@ fig=px.bar(df_plot, x="trackName", y="hrPlayed")
 
 st.plotly_chart(fig)
 
+st.subheader("Question 5 : What is the correlation between each categorie?")
+
+numerical_df = df[['msPlayed', 'danceability', 'energy','loudness','speechiness','acousticness','instrumentalness','liveness','valence','tempo','duration_ms']]
+
+df_corr = numerical_df.corr() # Generate correlation matrix
+x = list(df_corr.columns)
+y = list(df_corr.index)
+z = np.array(df_corr)
+
+figSix = ff.create_annotated_heatmap(
+    z,
+    x = x,
+    y = y ,
+    annotation_text = np.around(z, decimals=2),
+    hoverinfo='z',
+    colorscale='Blues',
+    showscale=True,
+    )
+figSix.update_xaxes(side="bottom")
+figSix.update_layout(
+    title_text='Correlation Heatmap',
+    title_x=0.5,
+    width=1000,
+    height=1000,
+    yaxis_autorange='reversed',
+    template='plotly_dark'
+)
+
 ##############################################################################################
 
 st.header('Elayeh - Viz')
@@ -141,4 +170,11 @@ df_plot=pd.DataFrame(df.groupby('artistName')['hrPlayed'].sum().sort_values(asce
 df_plot.columns=['artistName','TotalhrPlayed']
 
 fig=px.bar(df_plot,x='artistName',y='TotalhrPlayed',color='artistName',title='Top Artists')
+st.plotly_chart(fig)
+
+st.subheader(' Question 5: Which genres are major or minor?')
+df_plot=pd.DataFrame(df.groupby(['genre','mode']).size()).reset_index()
+
+df_plot.columns=['genre','mode','count']
+fig = px.sunburst(df_plot, path=['mode', 'genre'], values='count', color='mode')
 st.plotly_chart(fig)
