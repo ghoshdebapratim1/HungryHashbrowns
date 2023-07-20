@@ -77,7 +77,9 @@ df_plot=pd.DataFrame(df.groupby('genre')['hrPlayed'].sum().sort_values(ascending
 df_plot.columns=['genre','TotalhrPlayed']
 
 fig=px.bar(df_plot,x='genre',y='TotalhrPlayed',color='genre',title='Top Genres')
-st.write("From this we can see that ")
+
+st.write("From this we can see that alt z is is genre with the most hours played, and that pop genres are the more popular genres with more hours played than other genres.")
+
 st.plotly_chart(fig)
 
 st.subheader("Question 2 : Which genre has more danceability than other?")
@@ -86,12 +88,13 @@ df_plot=pd.DataFrame(df.groupby('genre')['danceability'].mean().sort_values(asce
 
 df_plot.columns=['genre','avg_danceability']
 
-
 fig = px.bar(df_plot,x='genre',y='avg_danceability',color='genre',title='Genre vs Average Danceability')
+
+st.write("From this chart we can see that canadian old school hip hop has the most danceability than the others followed by trap queen and russian drill.")
 
 st.plotly_chart(fig)
 
-st.subheader("Question 3 : Is the loudness realted tot he genre?")
+st.subheader("Question 3 : Is the loudness realted to the genre?")
 
 df_plot=pd.DataFrame(df.groupby('genre')['loudness'].mean().sort_values(ascending=False).head(20)).reset_index()
 
@@ -99,6 +102,8 @@ df_plot.columns=['genre','avg_loudness']
 
 
 fig = px.bar(df_plot,x='genre',y='avg_loudness',color='genre',title='Genre vs Average Loudness')
+
+st.write("")
 
 st.plotly_chart(fig)
 
@@ -161,10 +166,13 @@ df_plot.columns=['genre','avg_valence']
 
 fig = px.bar(df_plot,x='genre',y='avg_valence', color= 'genre', title='Genre vs Average Valence')
 st.plotly_chart(fig)
+st.write("From this chart we can understand that the blues genre has the highest average valence.")
 
 st.subheader(' Question 3 : Is there a relation between speechiness and duration?')
 fig=px.scatter(df,x='speechiness', y='duration_ms', title='Speechiness vs Duration')
 st.plotly_chart(fig)
+
+st.write("From this chart we can understand that the lower the speechiness is the higher the duration of the track is.")
 
 st.subheader(' Question 4: Who are the Top Artists')
 df_plot=pd.DataFrame(df.groupby('artistName')['hrPlayed'].sum().sort_values(ascending=False).head()).reset_index()
@@ -172,7 +180,9 @@ df_plot=pd.DataFrame(df.groupby('artistName')['hrPlayed'].sum().sort_values(asce
 df_plot.columns=['artistName','TotalhrPlayed']
 
 fig=px.bar(df_plot,x='artistName',y='TotalhrPlayed',color='artistName',title='Top Artists')
-st.plotly_chart(fig)
+st.plotly_chart(fig) 
+
+st.write("This chart helps us  understand who are the top artists.")
 
 st.subheader(' Question 5: Which genres are major or minor?')
 df_plot=pd.DataFrame(df.groupby(['genre','mode']).size()).reset_index()
@@ -180,3 +190,4 @@ df_plot=pd.DataFrame(df.groupby(['genre','mode']).size()).reset_index()
 df_plot.columns=['genre','mode','count']
 fig = px.sunburst(df_plot, path=['mode', 'genre'], values='count', color='mode')
 st.plotly_chart(fig)
+st.write("This chart tells us that there are more major than minor tracks and that Alt Z and Pop have more tracks in the major area.")
