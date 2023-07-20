@@ -129,11 +129,11 @@ df_plot.columns=['genre','avg_valence']
 
 
 fig = px.bar(df_plot,x='genre',y='avg_valence', color= 'genre', title='Genre vs Average Valence')
-fig.show()
+st.plotly_chart(fig)
 
 st.subheader(' Question 3 : Is there a relation between speechiness and duration?')
 fig=px.scatter(df,x='speechiness', y='duration_ms', title='Speechiness vs Duration')
-fig.show()
+st.plotly_chart(fig)
 
 st.subheader(' Question 4: Who are the Top Artists')
 df_plot=pd.DataFrame(df.groupby('artistName')['hrPlayed'].sum().sort_values(ascending=False).head()).reset_index()
@@ -141,4 +141,4 @@ df_plot=pd.DataFrame(df.groupby('artistName')['hrPlayed'].sum().sort_values(asce
 df_plot.columns=['artistName','TotalhrPlayed']
 
 fig=px.bar(df_plot,x='artistName',y='TotalhrPlayed',color='artistName',title='Top Artists')
-fig.show()
+st.plotly_chart(fig)
