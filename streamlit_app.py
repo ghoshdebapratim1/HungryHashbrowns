@@ -78,9 +78,10 @@ with tab1:
 with tab2:
     ## Riana 
     st.header('Riana- Viz')
+    riana_top_n = st.slider('Choose the top N items to display ', 5, 50, 20)
     st.subheader(' Question 1 : What are the top genres in terms of hours played?')
     
-    df_plot=pd.DataFrame(df.groupby('genre')['hrPlayed'].sum().sort_values(ascending=False).head(20)).reset_index()
+    df_plot=pd.DataFrame(df.groupby('genre')['hrPlayed'].sum().sort_values(ascending=False).head(riana_top_n)).reset_index()
     
     df_plot.columns=['genre','TotalhrPlayed']
     
@@ -92,7 +93,7 @@ with tab2:
     
     st.subheader("Question 2 : Which genre has more danceability than other?")
     
-    df_plot=pd.DataFrame(df.groupby('genre')['danceability'].mean().sort_values(ascending=False).head(20)).reset_index()
+    df_plot=pd.DataFrame(df.groupby('genre')['danceability'].mean().sort_values(ascending=False).head(riana_top_n)).reset_index()
     
     df_plot.columns=['genre','avg_danceability']
     
@@ -104,7 +105,7 @@ with tab2:
     
     st.subheader("Question 3 : Is the loudness realted to the genre?")
     
-    df_plot=pd.DataFrame(df.groupby('genre')['loudness'].mean().sort_values(ascending=False).head(20)).reset_index()
+    df_plot=pd.DataFrame(df.groupby('genre')['loudness'].mean().sort_values(ascending=False).head(riana_top_n)).reset_index()
     
     df_plot.columns=['genre','avg_loudness']
     
@@ -117,7 +118,7 @@ with tab2:
     
     st.subheader("Question 4 : What are the top soundtracks in terms of hours played?")
     
-    df_plot=df[["trackName", "hrPlayed"]].sort_values(by="hrPlayed", ascending=False).head(20)
+    df_plot=df[["trackName", "hrPlayed"]].sort_values(by="hrPlayed", ascending=False).head(riana_top_n)
     
     fig=px.bar(df_plot, x="trackName", y="hrPlayed")
     
@@ -159,10 +160,10 @@ with tab2:
 ##############################################################################################
 with tab3:
     st.header('Elayeh - Viz')
-    
+    elayeh_top_n = st.slider('Choose the top N items to display ', 5, 50, 20)
     st.subheader(' Question 1 : What genre has the higher instrumentalness ') ## Elayeh 
     
-    df_plot=pd.DataFrame(df.groupby('genre')['instrumentalness'].mean().sort_values(ascending=False)).head(10).reset_index()
+    df_plot=pd.DataFrame(df.groupby('genre')['instrumentalness'].mean().sort_values(ascending=False)).head(elayeh_top_n).reset_index()
     
     df_plot.columns=['genre','avg_intrumentalness']
     
@@ -172,7 +173,7 @@ with tab3:
     st.write("From this chart we can gather that Chiptune has the highest instrumentalness out of all of the genres. We can also understand that most of the genres with higher instrumentalness are the ones that typically have less speech in it such as classical and lo-fi music.")
     
     st.subheader(' Question 2 : What genre has more valence?')
-    df_plot=pd.DataFrame(df.groupby('genre')['valence'].mean().sort_values(ascending=False)).head(10).reset_index()
+    df_plot=pd.DataFrame(df.groupby('genre')['valence'].mean().sort_values(ascending=False)).head(elayeh_top_n).reset_index()
     
     df_plot.columns=['genre','avg_valence']
     
@@ -188,7 +189,7 @@ with tab3:
     st.write("From this chart we can understand that the lower the speechiness is the higher the duration of the track is.")
     
     st.subheader(' Question 4: Who are the Top Artists')
-    df_plot=pd.DataFrame(df.groupby('artistName')['hrPlayed'].sum().sort_values(ascending=False).head()).reset_index()
+    df_plot=pd.DataFrame(df.groupby('artistName')['hrPlayed'].sum().sort_values(ascending=False).head(elayeh_top_n)).reset_index()
     
     df_plot.columns=['artistName','TotalhrPlayed']
     
@@ -206,7 +207,7 @@ with tab3:
     st.write("This chart tells us that there are more major than minor tracks and that Alt Z and Pop have more tracks in the major area.")
     
     st.subheader(" Question 6: How does the distribution of tempos vary among different genres?")
-    df_plot=pd.DataFrame(df.groupby('genre')['hrPlayed'].sum().sort_values(ascending=False).head(10)).reset_index()
+    df_plot=pd.DataFrame(df.groupby('genre')['hrPlayed'].sum().sort_values(ascending=False).head(elayeh_top_n)).reset_index()
     
     df_plot.columns=['genre','tempo']
     
